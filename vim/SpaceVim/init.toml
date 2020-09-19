@@ -1,0 +1,75 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2017 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    # set spacevim theme. by default colorscheme layer is not loaded,
+    # if you want to use more colorscheme, please load the colorscheme
+    # layer
+    colorscheme = "hyper"
+    colorscheme_bg = "dark"
+    # Disable guicolors in basic mode, many terminal do not support 24bit
+    # true colors
+    guifont = "mononoki Nerd Font Mono:h8"
+    enable_guicolors = true
+    # Disable statusline separator, if you want to use other value, please
+    # install nerd fonts
+    statusline_separator = "arrow"
+    statusline_inactive_separator = "arrow"
+    buffer_index_type = 4
+    enable_tabline_filetype_icon = true
+    enable_statusline_mode = false
+    bootstrap_after = "myspacevim#after"
+    #filemanager = "nerdtree"
+    relativenumber = false
+
+# Enable autocomplete layer
+[[layers]]
+  name = "colorscheme"
+  random_theme = false 
+
+[[layers]]
+name = 'autocomplete'
+auto_completion_return_key_behavior = "complete"
+auto_completion_tab_key_behavior = "smart"
+
+[[layers]]
+name = 'shell'
+default_position = 'top'
+default_height = 30
+
+[[layers]]
+name = "lang#c"
+
+[[custom_plugins]]
+name = 'eliba2/vim-node-inspect'
+
+[[custom_plugins]]
+name = 'moll/vim-bbye'
+
+[[custom_plugins]]
+name = 'victorze/foo'
+
+[[custom_plugins]]
+name = 'duckwork/low.vim'
+
+[[custom_plugins]]
+name = 'atahabaki/archman-vim'
+
+[[custom_plugins]]
+name = 'vim-airline/vim-airline-themes'
+
+[[custom_plugins]]
+name = 'ctrlpvim/ctrlp.vim'
+
+
+
+
+
+
+

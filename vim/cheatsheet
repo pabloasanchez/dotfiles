@@ -1,0 +1,66 @@
+
+vim
+===========
+
+set normal numbering
+:set norelativenumber
+:set number
+
+:r to append a file or command
+:r !ls -l
+:r README
+
+change up to end of word
+:ce
+
+There are ten types of registers:     *registers* *E354*
+1. The unnamed register ""
+2. 10 numbered registers "0 to "9
+3. The small delete register "-
+4. 26 named registers "a to "z or "A to "Z
+5. Three read-only registers ":, "., "%
+6. Alternate buffer register "#
+7. The expression register "=
+8. The selection registers "* and "+
+9. The black hole register "_
+10. Last search pattern register "/
+
+
+yank lines 
+-----------
+:364,757yEnter
+
+if you want to copy those lines and paste to some certain line, t is your friend. for example:
+
+:364,757t2Enter will copy those lines to under 2nd line.
+
+~ up/lower case under cursor
+
+
+File Paths
+-----------
+CTRL+G
+:pwd
+:cd
+:lcd
+:set autochdir 
+
+
+CTRL+R
+-----------
+While in insert mode, you can use Ctrl-R {register}, where register can be:
+
+    + for the clipboard,
+    * for the X clipboard (last selected text in X),
+    " for the unnamed register (last delete or yank in Vim),
+    or a number of others (see :h registers).
+
+Ctrl-R {register} inserts the text as if it were typed.
+Ctrl-R Ctrl-O {register} inserts the text with the original indentation.
+Ctrl-R Ctrl-P {register} inserts the text and auto-indents it.
+Ctrl-O can be used to run any normal mode command before returning to insert mode, so
+Ctrl-O "+p can also be used, for example.
+
+For more information, view the documentation with :h i_ctrl-r
+
+
