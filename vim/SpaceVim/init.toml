@@ -11,7 +11,7 @@
     # set spacevim theme. by default colorscheme layer is not loaded,
     # if you want to use more colorscheme, please load the colorscheme
     # layer
-    colorscheme = "hyper"
+    colorscheme = "orbital"
     colorscheme_bg = "dark"
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
@@ -21,22 +21,55 @@
     # install nerd fonts
     statusline_separator = "arrow"
     statusline_inactive_separator = "arrow"
-    buffer_index_type = 4
+    statusline_left_sections = [
+      'winnr',
+      'major mode',
+      'filename',
+      'fileformat',
+      'minor mode lighters',
+      'version control info',
+      'search status'
+    ]
+
+    statusline_right_sections = [
+      'cursorpos',
+      'percentage',
+      'input method',
+      'date',
+      'time'
+    ]
+
+    buffer_index_type = 0
     enable_tabline_filetype_icon = true
-    enable_statusline_mode = false
+    enable_statusline_mode = true
+    bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
     #filemanager = "nerdtree"
     relativenumber = false
+    automatic_update = true
 
-# Enable autocomplete layer
+ custom_color_palette = [
+         ["Yellow", "#111111", 246, 235],
+         ["DarkGray", "Black", 239, 246],
+         ["#a89984", "Black", 237, 246],
+         ["#000000", 241],
+         ["#ffffff", "Black", 235, 109],
+         ["#282828", "Black", 235, 208],
+         ["#282828", "Black", 235, 108],
+         ["#282828", "Black", 235, 72],
+         ["#282828", "Black", 235, 132],
+     ]
+ 
 [[layers]]
-  name = "colorscheme"
-  random_theme = false 
+name = "colorscheme"
+random_theme = false 
 
 [[layers]]
 name = 'autocomplete'
 auto_completion_return_key_behavior = "complete"
-auto_completion_tab_key_behavior = "smart"
+auto_completion_tab_key_behavior = "cycle"
+autocomplete_method = "coc"
+snippet_engine = "ultisnips"
 
 [[layers]]
 name = 'shell'
@@ -46,6 +79,33 @@ default_height = 30
 [[layers]]
 name = "lang#c"
 
+[[layers]]
+name = "lang#html"
+
+# [[layers]]
+# name = "lang#javascript"
+ 
+# [[layers]]
+# name = "core#tabline"
+
+[[layers]]
+name = "lang#markdown"
+
+[[layers]]
+name = "VersionControl"
+
+[[layers]]
+name = "fzf"
+
+# [[custom_plugins]]
+# name = 'victorze/foo' 
+
+[[custom_plugins]]
+name = 'rafi/awesome-vim-colorschemes'
+
+[[custom_plugins]]
+name = 'mcchrish/vim-no-color-collections'
+
 [[custom_plugins]]
 name = 'eliba2/vim-node-inspect'
 
@@ -53,23 +113,37 @@ name = 'eliba2/vim-node-inspect'
 name = 'moll/vim-bbye'
 
 [[custom_plugins]]
-name = 'victorze/foo'
+name = 'raimondi/delimitmate'
 
 [[custom_plugins]]
-name = 'duckwork/low.vim'
+name = 'maxbrunsfeld/vim-yankstack' 
 
 [[custom_plugins]]
-name = 'atahabaki/archman-vim'
+name = 'kshenoy/vim-signature' 
 
 [[custom_plugins]]
-name = 'vim-airline/vim-airline-themes'
+name = 'neomake/neomake' 
 
 [[custom_plugins]]
-name = 'ctrlpvim/ctrlp.vim'
+name = 'voldikss/vim-floaterm' 
 
+[[custom_plugins]]
+name = 'kyazdani42/nvim-web-devicons' 
 
+[[custom_plugins]]
+name = 'romgrk/barbar.nvim' 
 
+[[custom_plugins]]
+name = 'junegunn/fzf.vim'
 
+[[custom_plugins]]
+name = 'jesseleite/vim-agriculture'
 
+[[custom_plugins]]
+name = 'junegunn/limelight.vim'
 
+[[custom_plugins]]
+name = 'hushicai/tagbar-javascript.vim'
 
+[[custom_plugins]]
+name = 'ludovicchabant/vim-gutentags'
