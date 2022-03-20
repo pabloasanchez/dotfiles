@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-DURATION=300
+DURATION=1000
 DIR=~/Pictures/
 
 
@@ -35,7 +35,7 @@ if [[ $@ == *"--slideshow"* ]]; then
   trap break SIGINT
 
   while true; do
-    chafa $LIST $CHAFA_ARGS --duration=$DURATION
+    chafa $LIST $CHAFA_ARGS "--duration=$DURATION"
   done
 else
   LIST=$(ls $DIR*.gif | shuf -n 1)
@@ -52,3 +52,4 @@ if [[ $@ == *"--help"* ]]; then
   echo "  --help            Show this help information"
   echo "  --slideshow       Cycle *.gifs and display with Chafa"
 fi
+

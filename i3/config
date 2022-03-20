@@ -9,14 +9,19 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-exec "xrandr --output eDP1 --dpi 100"
+# Set HDMI monitor as primary and adjust dpi to 100 for i3 fonts
+# exec "xrandr --output eDP1 --dpi 100"
+exec "xrandr --output HDMI-0 --mode 1920x1080 --primary --right-of DVI-D-0 --dpi 96"
+
+# Mod variable
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font pango:monospace 8 
-# font pango:Fira Code 8
-font pango:mononoki Nerd Font Mono 9
+# font pango:SauceCodePro Nerd Font Mono 10
+font pango:mononoki Nerd Font Mono 12
+# font pango:Fira Code 6
 # font pango:DejaVu Sans Mono for Powerline 10 
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -25,25 +30,34 @@ font pango:mononoki Nerd Font Mono 9
 
 # Window title
 # give the focused window a prefix
-bindsym $mod+p title_format "<b>%title</>"
+# bindsym $mod+p title_format "<b>%title</>"
 
 # print all window titles bold
 for_window [class=".*"] title_format "%title"
 
 # print window titles of firefox windows red
 for_window [class="(?i)firefox"] title_format "<span foreground='orange'>%title</span>"
+for_window [class="(?i)brave"] title_format "<span foreground='orange'>%title</span>"
+for_window [class="(?i)chromium"] title_format "<span foreground='blue'>%title</span>"
+for_window [class="(?i)vimb"] title_format "<span foreground='blue'>Vimb - %title</span>"
 
 # Borders
 new_window pixel
-hide_edge_borders smart
+# hide_edge_borders smart
 
 # Color
 # class                         border          background      text            indicator       child_border
-client.focused                  #555555         #000000         #ffff33         #660000         #330000
-client.focused_inactive         #555555         #000000         #ffff33         #660000         #000000
-client.unfocused                #555555         #000000         #888888         #660000         #000000
-client.urgent                   #555555         #000000         #ffffff         #660000         #000000
-client.placeholder              #555555         #000000         #ffffff         #660000         #0c0c0c
+# client.focused                  #555555         #000000         #ffff33         #660000         #330000
+# client.focused_inactive         #555555         #000000         #ffff33         #660000         #000000
+# client.unfocused                #555555         #000000         #888888         #660000         #000000
+# client.urgent                   #555555         #000000         #ffffff         #660000         #000000
+# client.placeholder              #555555         #000000         #ffffff         #660000         #0c0c0c
+ 
+client.focused                  #000000         #000000         #ffff33         #000000         #060000
+client.focused_inactive         #000000         #000000         #ccff33         #000000         #000000
+client.unfocused                #000000         #000000         #888888         #000000         #000000
+client.urgent                   #000000         #000000         #ffffff         #000000         #000000
+client.placeholder              #000000         #000000         #ffffff         #000000         #0c0c0c
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -59,26 +73,45 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+# bindsym $mod+Shift+q kill
 bindsym $mod+F6 kill
 bindsym $mod+button3 kill
+bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -nb "#000" -fn "mononoki Nerd Font Mono-8" -b -sb "#000" -sf "#ff0000"
+# bindsym $mod+d exec dmenu_run -nb "#000" -fn "mononoki Nerd Font Mono-9" -b -sb "#000" -sf "#fff000"
 # You can alternatively use rofi
-# bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 
+bindsym $mod+d exec rofi -show run
+
+# Screenshot
+bindsym $mod+s exec scrot -s
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
+# installed.chromium
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # Volume binds
 bindsym $mod+KP_Subtract exec amixer set Master 0%
 bindsym $mod+KP_Add exec amixer set Master 10%
-bindsym KP_Subtract exec amixer set Master 5%-
-bindsym KP_Add exec amixer set Master 5%+
 
-bindsym --whole-window button12 exec amixer set Master 0  
+# bindsym KP_Subtract exec amixer set Master 5%-
+# bindsym KP_Add exec amixer set Master 5%+
+
+bindsym button10 exec amixer -D pulse set Master 10%+
+bindsym button11 exec amixer -D pulse set Master 10%-
+bindsym button12 exec amixer -D pulse set Master mute
+
+bindsym $mod+i exec amixer -D pulse set Master 10%+
+bindsym $mod+u exec amixer -D pulse set Master 10%-
+bindsym $mod+o exec amixer -D pulse set Master 0
+bindsym $mod+p exec mpc toggle
+bindsym $mod+bracketleft exec mpc prev
+bindsym $mod+bracketright exec mpc next
+
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+bindsym XF86AudioMute exec amixer set Master 0%
 
 # Worskpace bindsym
 bindsym --whole-window $mod+button5 workspace next_on_output
@@ -93,13 +126,18 @@ bindsym --whole-window $mod+Shift+Tab workspace prev_on_output
 bindsym --whole-window button6 workspace next_on_output
 bindsym --whole-window button7 workspace prev_on_output
 
+bindsym --whole-window $mod+l workspace next_on_output
+bindsym --whole-window $mod+h workspace prev_on_output
+
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+ntilde focus right
-bindsym --whole-window button11 focus right 
-bindsym --whole-window button10 focus left
+bindsym $mod+Shift+h focus left
+bindsym $mod+Shift+j focus down
+bindsym $mod+Shift+k focus up
+bindsym $mod+Shift+l focus right
+
+# bindsym --whole-window button11 focus right 
+# bindsym --whole-window button10 focus left
+
 bindsym --whole-window $mod+Shift+button4 focus left
 bindsym --whole-window $mod+Shift+button5 focus right
 
@@ -110,10 +148,10 @@ bindsym $mod+Shift+Up focus up
 bindsym $mod+Shift+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+ntilde move right
+bindsym $mod+Control+h move left
+bindsym $mod+Control+j move down
+bindsym $mod+Control+k move up
+bindsym $mod+Control+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Control+Left move left
@@ -122,7 +160,7 @@ bindsym $mod+Control+Up move up
 bindsym $mod+Control+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 bindsym $mod+Up split h
 
 # split in vertical orientation
@@ -134,7 +172,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+F11 fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+bindsym $mod+t layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -145,7 +183,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+p focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -161,6 +199,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+bindsym $mod+a workspace 11
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -173,6 +212,7 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+a move container to workspace 11
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -189,16 +229,21 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym ntilde resize grow width 10 px or 10 ppt
+        # bindsym j resize shrink width 10 px or 10 ppt
+        # bindsym k resize grow height 10 px or 10 ppt
+        # bindsym l resize shrink height 10 px or 10 ppt
+        # bindsym ntilde resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Right resize shrink width 2 px or 2 ppt
         bindsym Up resize grow height 2 px or 2 ppt
         bindsym Down resize shrink height 2 px or 2 ppt
         bindsym Left resize grow width 2 px or 2 ppt
+
+        bindsym l resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
+        bindsym h resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -213,7 +258,14 @@ bindsym $mod+r mode "resize"
 #         status_command i3status
 # }
 
+# i3 gaps
+for_window [class=".*"] border pixel 10
+
+# Hide edge borders only if there is one window with no gaps
+hide_edge_borders smart
+
 exec "~/.config/polybar/run.sh"
+# exec volumeicon
+# exec nm-applet
 exec parcellite
-#exec volumeicon
-exec nm-applet
+
