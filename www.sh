@@ -1,2 +1,3 @@
 #!/bin/bash
-w3m ask.moe
+w3m qwant.com
+

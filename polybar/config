@@ -17,24 +17,24 @@
 ;==========================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
 background = #000
 background-alt = #111
-;foreground = ${xrdb:color7:#222}
 foreground = #777
 foreground-alt = #000
-primary = #eee
+primary = #fff
 secondary = #ccc
 alert = #ff0000
+;background = ${xrdb:color0:#222}
+;foreground = ${xrdb:color7:#222}
 
 [bar/main]
-;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 15
-;offset-x = 1%
-;offset-y = 1%
+height = 24
 radius = 0
 fixed-center = false
+;monitor = ${env:MONITOR:HDMI-1}
+offset-x = -10%
+offset-y = -33%
 
 bottom = true
 
@@ -47,40 +47,48 @@ foreground = ${colors.foreground}
 border-size = 0
 border-color = #00000000
 
-padding-left = 0
-padding-right = 0
+padding-left = 2
+padding-right = 2
 
-module-margin-left = 1
-module-margin-right = 1
+module-margin-left = 2
+module-margin-right = 2
+
+; font-0 = SauceCodePro Nerd Font Mono:fontformat=truetype:size=11:antialias=true;0
+; font-1 = SauceCodePro Nerd Font Mono:fontformat=truetype:size=11:antialias=true;0
+; font-2 = SauceCodePro Nerd Font Mono:fontformat=truetype:size=11:antialias=true;0
+
+font-0 = mononoki Nerd Font Mono:fontformat=truetype:size=12:antialias=false;0
+font-1 = mononoki Nerd Font Mono:fontformat=truetype:size=12:antialias=false;0
+font-2 = mononoki Nerd Font Mono:fontformat=truetype:size=12:antialias=false;0
+
+;font-2 = Siji:style=Regular:size=12
 
 ;font-0 = fixed:pixelsize=8;1
+
 ;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 ;font-2 = mononoki Nerd Font Mono:pixelsize=8;1
 ;font-2 = mononoki Nerd Font Mono:fontformat=truetype:size=8:antialias=false;0
-font-0 = mononoki Nerd Font Mono:fontformat=truetype:size=8:antialias=false;0
-font-1 = mononoki Nerd Font Mono:fontformat=truetype:size=8:antialias=false;0
-font-2 = Siji:style=Regular:size=7
+;font-2 = Siji:style=Regular:size=12
 
-modules-left = i3
+modules-left = i3 mpd
+modules-right = pulseaudio date 
+modules-center = xwindow
 ;modules-left = bspwm i3
-;modules-center = mpd
-modules-right = memory temperature pulseaudio date powermenu
+; modules-center = mpd
 ;modules-right = filesystem memory cpu temperature pulseaudio date powermenu
-;modules-center =  
 ;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
-
-tray-position = right
-tray-padding = 4
+tray-position = none
+tray-padding = 3
 tray-background = ${colors.background}
 tray-detached = false
 ;tray-offset-x = 0
-tray-offset-y = 2 
-tray-scale = 0.5
+tray-offset-y = 0 
+tray-scale = 0.9
 ;tray-maxsize = 8
 
-;wm-restack = bspwm
 wm-restack = i3
+;wm-restack = bspwm
 ;override-redirect = true
 
 ;scroll-up = bspwm-desknext
@@ -94,7 +102,7 @@ cursor-scroll = normal
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+label = %title:0:60:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -111,6 +119,11 @@ label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
+
+[module/custom-weather]
+type = custom/script
+exec = curl -sf wttr.in?format=1
+
 
 [module/filesystem]
 type = internal/fs
@@ -181,18 +194,17 @@ label-urgent-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
-
 [module/mpd]
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+icon-prev = *
+icon-stop = *
+icon-play = *
+icon-pause = *
+icon-next = *
 
-label-song-maxlen = 25
+label-song-maxlen = 100
 label-song-ellipsis = true
 
 [module/xbacklight]
@@ -275,44 +287,53 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date =  %Y-%m-%d
-date-alt =   %Y-%m-%d
+; date =  %Y-%m-%d
+date = %Y-%m-%d
+date-alt = %Y-%m-%d
 
-time =  %H:%M
-time-alt =  %H:%M:%S
+time =  %H:%M
+time-alt =  %H:%M:%S
+
+; date =  %Y-%m-%d
+; date-alt =   %Y-%m-%d
+
+; time =  %H:%M
+; time-alt =  %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #000
 
-label = %date% %time%
+label = %date%   %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = 
+; label-volume = 
 ;label-volume = %percentage%%
-label-volume-foreground = ${root.foreground}
+label-volume = 
+label-volume-foreground = #ffcc00
 
-label-muted =  
+; label-muted =  
+label-muted = ······························
 label-muted-foreground = #f00000
 
-bar-volume-width = 10
+bar-volume-width = 30
 bar-volume-foreground-0 = #222
-bar-volume-foreground-1 = #444
-bar-volume-foreground-2 = #555
-bar-volume-foreground-3 = #777
-bar-volume-foreground-4 = #888
-bar-volume-foreground-5 = #999
-bar-volume-foreground-6 = #aa2323
+bar-volume-foreground-1 = #222
+bar-volume-foreground-2 = #222
+bar-volume-foreground-3 = #222
+bar-volume-foreground-4 = #222
+bar-volume-foreground-5 = #222
+bar-volume-foreground-6 = #666
 bar-volume-gradient = true
-bar-volume-indicator = 
-bar-volume-indicator-font = 2
-bar-volume-fill = 
-bar-volume-fill-font = 2
-bar-volume-empty = 
-bar-volume-empty-font = 2
+bar-volume-indicator = ·
+bar-volume-indicator-font = 1
+bar-volume-fill = ·
+bar-volume-fill-font = 1
+bar-volume-empty = ·
+bar-volume-empty-font = 1
 bar-volume-empty-foreground = #222
 
 [module/alsa]

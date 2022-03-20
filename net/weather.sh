@@ -1,2 +1,2 @@
 #!/bin/bash
-curl wttr.in
+curl wttr.in?format=4
