@@ -2,4 +2,4 @@
 echo "IP Address?"
 read IP_ADDR
 set +x
-nmap $IP_ADDR
+nmap -sV $IP_ADDR
