@@ -163,19 +163,14 @@
 # NOTE: It might be helpful to run dunst -print in a terminal in order to find
 # fitting options for rules.
 
-[espeak]
+[tts]
 summary = "*"
-script = ~/.config/dunst/scripts/espeak.sh
+script = ~/.config/dunst/scripts/pico2wav.sh
 
 [tg]
 appname = "tg"
 summary = "*"
-script = ~/.config/dunst/scripts/espeak.sh
-
-[Telegram]
-appname = "Telegram"
-summary = "*"
-script = ~/.config/dunst/scripts/espeak.sh
+script = ~/.config/dunst/scripts/pico2wav.sh
 
 #[script-test]
 #    summary = "*script*"
