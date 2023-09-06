@@ -1,6 +1,6 @@
 #!/bin/bash
-ARCHIVE_DIR=~/Backup/archivebox/
-DB=~/Backup/archivebox/index.sqlite3
+ARCHIVE_DIR=/mnt/storage/Backup/archivebox/
+DB=/mnt/storage/Backup/archivebox/index.sqlite3
 
 cd $ARCHIVE_DIR
 

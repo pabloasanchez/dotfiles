@@ -197,7 +197,7 @@ label-urgent-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next>    <label-song>
 
 icon-prev = *
 icon-stop = *
@@ -205,7 +205,7 @@ icon-play = *
 icon-pause = *
 icon-next = *
 
-label-song-maxlen = 100
+label-song-maxlen = 22
 label-song-ellipsis = true
 
 [module/xbacklight]
@@ -317,10 +317,10 @@ label-volume =
 label-volume-foreground = #ffcc00
 
 ; label-muted =  
-label-muted = ······························
+label-muted = ····················
 label-muted-foreground = #f00000
 
-bar-volume-width = 45
+bar-volume-width = 20
 bar-volume-foreground-0 = #222
 bar-volume-foreground-1 = #222
 bar-volume-foreground-2 = #222
