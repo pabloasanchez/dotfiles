@@ -1,0 +1,32 @@
+configuration {
+modi: "run,window";
+lines: 10;
+font: "mononoki Nerd Font Mono 13";
+padding: 6;
+show-icons: false;
+cycle: true;
+sidebar-mode: true;
+separator-style: "dash";
+show-match: true;
+kb-remove-char-back: "BackSpace";
+kb-remove-to-eol: "";
+kb-accept-entry: "Return";
+kb-mode-next: "Control+l";
+kb-mode-previous: "Control+h";
+kb-mode-complete: "";
+kb-row-up: "Control+k";
+kb-row-down: "Control+j";
+kb-row-tab: "Tab";
+}
+@import "/usr/share/rofi/themes/custom.rasi"
+@theme "/usr/share/rofi/themes/custom.rasi"
+
+listview {
+	lines: 10;
+	columns: 2;
+}
+
+window {
+	width: 44%;
+}
+
