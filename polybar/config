@@ -24,16 +24,14 @@ foreground-alt = #000
 primary = #fff
 secondary = #ccc
 alert = #ff0000
-;background = ${xrdb:color0:#222}
-;foreground = ${xrdb:color7:#222}
 
 [bar/main]
 width = 100%
-height = 24
-radius = 0
+height = 28
+radius = 10
 fixed-center = false
 ;monitor = ${env:MONITOR:HDMI-1}
-offset-x = -10%
+; offset-x = -10%
 offset-y = -33%
 
 bottom = true
@@ -41,8 +39,8 @@ bottom = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-;line-size = 6
-;line-color = #f00
+; line-size = 6
+; line-color = #f00
 
 border-size = 0
 border-color = #00000000
@@ -53,25 +51,12 @@ padding-right = 2
 module-margin-left = 2
 module-margin-right = 2
 
-; font-0 = SauceCodePro Nerd Font Mono:fontformat=truetype:size=13:antialias=true;0
-; font-1 = SauceCodePro Nerd Font Mono:fontformat=truetype:size=13:antialias=true;0
-; font-2 = SauceCodePro Nerd Font Mono:fontformat=truetype:size=13:antialias=true;0
-
 font-0 = mononoki Nerd Font Mono:fontformat=truetype:size=13:antialias=false;0
 font-1 = mononoki Nerd Font Mono:fontformat=truetype:size=13:antialias=false;0
 font-2 = mononoki Nerd Font Mono:fontformat=truetype:size=13:antialias=false;0
 
-;font-2 = Siji:style=Regular:size=12
-
-;font-0 = fixed:pixelsize=8;1
-
-;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-;font-2 = mononoki Nerd Font Mono:pixelsize=8;1
-;font-2 = mononoki Nerd Font Mono:fontformat=truetype:size=8:antialias=false;0
-;font-2 = Siji:style=Regular:size=12
-
 modules-left = i3 mpd
-modules-right = pulseaudio date 
+modules-right = pulseaudio date time
 modules-center = xwindow
 ;modules-left = bspwm i3
 ; modules-center = mpd
@@ -89,7 +74,7 @@ tray-scale = 0.9
 
 wm-restack = i3
 ;wm-restack = bspwm
-;override-redirect = true
+; override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -122,8 +107,8 @@ label-indicator-underline = ${colors.secondary}
 
 [module/custom-weather]
 type = custom/script
-exec = curl -sf wttr.in?format=1
-
+interval = 36l0
+exec = curl -sf wttr.in/?format=1
 
 [module/filesystem]
 type = internal/fs
@@ -197,7 +182,7 @@ label-urgent-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next>    <label-song>
 
 icon-prev = *
 icon-stop = *
@@ -205,7 +190,7 @@ icon-play = *
 icon-pause = *
 icon-next = *
 
-label-song-maxlen = 100
+label-song-maxlen = 22
 label-song-ellipsis = true
 
 [module/xbacklight]
@@ -288,24 +273,23 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-; date =  %Y-%m-%d
 date = %Y-%m-%d
-date-alt = %Y-%m-%d
+date-alt = %a %Y-%m-%d
+format-prefix =  
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %date%
+
+[module/time]
+type = internal/date
+interval = 5
 
 time =  %H:%M
-time-alt =  %H:%M:%S
+time-alt =  %H:%M
 
-; date =  %Y-%m-%d
-; date-alt =   %Y-%m-%d
-
-; time =  %H:%M
-; time-alt =  %H:%M:%S
-
-format-prefix = 
+format-prefix =  
 format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = #000
-
-label = %date%   %time%
+label = %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -317,17 +301,17 @@ label-volume =
 label-volume-foreground = #ffcc00
 
 ; label-muted =  
-label-muted = ······························
+label-muted = ····················
 label-muted-foreground = #f00000
 
-bar-volume-width = 45
-bar-volume-foreground-0 = #222
-bar-volume-foreground-1 = #222
-bar-volume-foreground-2 = #222
-bar-volume-foreground-3 = #222
-bar-volume-foreground-4 = #222
-bar-volume-foreground-5 = #222
-bar-volume-foreground-6 = #666
+bar-volume-width = 20
+bar-volume-foreground-0 = #666
+bar-volume-foreground-1 = #666
+bar-volume-foreground-2 = #666
+bar-volume-foreground-3 = #666
+bar-volume-foreground-4 = #666
+bar-volume-foreground-5 = #666
+bar-volume-foreground-6 = #999
 bar-volume-gradient = true
 bar-volume-indicator = ·
 bar-volume-indicator-font = 1
@@ -335,7 +319,7 @@ bar-volume-fill = ·
 bar-volume-fill-font = 1
 bar-volume-empty = ·
 bar-volume-empty-font = 1
-bar-volume-empty-foreground = #222
+bar-volume-empty-foreground = #444
 
 [module/alsa]
 type = internal/alsa
@@ -453,7 +437,7 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
 
 ; vim:ft=dosini
